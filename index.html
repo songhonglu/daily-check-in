@@ -125,6 +125,8 @@
   const allSummary = document.querySelector("#all-summary");
   const fileInput = document.querySelector("#file");
   const state = defaultState();
+  const isServerMode = location.protocol === "http:";
+  const storageKey = "daily-check-in-data-v1";
   let holidays = {};
 
   function todayValue() {
@@ -145,6 +147,7 @@
   }
 
   async function loadState() {
+    if (!isServerMode) return loadSavedState(JSON.parse(localStorage.getItem(storageKey) || "null"));
     const response = await fetch("/data");
     if (!response.ok) throw new Error("load failed");
     return loadSavedState(await response.json());
@@ -152,6 +155,11 @@
 
   async function saveState(showMessage = false) {
     state.month = monthInput.value || todayValue();
+    if (!isServerMode) {
+      localStorage.setItem(storageKey, JSON.stringify(state));
+      if (showMessage) setMessage("已保存到本设备");
+      return;
+    }
     const response = await fetch("/data", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(state) });
     if (!response.ok) throw new Error("save failed");
     if (showMessage) setMessage("已保存到本机");
@@ -262,7 +270,7 @@
     link.download = `ayi-pay-${state.month}.json`;
     link.click();
     URL.revokeObjectURL(link.href);
-    setMessage("备份已下载，换手机后导入即可");
+    setMessage("备份已下载，可在其他设备导入");
   }
 
   function importData(event) {
