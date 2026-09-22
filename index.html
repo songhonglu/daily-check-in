@@ -80,8 +80,8 @@
     .summary-card .pill.rest { background: var(--rest-soft); color: #a55f43; }
     .summary-card .pill.work { background: var(--accent-soft); color: var(--accent-dark); }
     .summary-card .pill.salary { background: var(--secondary-soft); color: var(--secondary-dark); }
-    .pagination { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 7px; font-size: 11px; color: var(--muted); }
-    .pagination .pages { display: flex; align-items: center; gap: 4px; }
+    .pagination { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 7px; font-size: 11px; color: var(--muted); }
+    .pagination .pages { display: flex; justify-content: center; align-items: center; gap: 4px; flex-wrap: wrap; }
     .pagination button { min-height: 28px; padding: 4px 9px; font-size: 11px; border-radius: 14px; }
     .pagination button.active { background: var(--secondary-soft); border-color: var(--secondary); color: var(--secondary-dark); font-weight: 750; }
     .pagination button:disabled { opacity: .42; pointer-events: none; }
@@ -345,7 +345,7 @@
     sizeLabel.textContent = "每页";
     const sizeGroup = document.createElement("div");
     sizeGroup.className = "page-size-group";
-    for (const size of [5, 10, 15, 20, 50, 100]) {
+    for (const size of [5, 10, 15, 20]) {
       const sizeButton = document.createElement("button");
       sizeButton.textContent = size;
       sizeButton.className = size === summaryPageSize ? "active" : "";
