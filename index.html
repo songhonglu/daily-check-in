@@ -127,6 +127,8 @@
   const state = defaultState();
   const isServerMode = location.protocol === "http:";
   const storageKey = "daily-check-in-data-v1";
+  const sharedRecordId = "ff808181a09d98f701a0c72aefa167b9";
+  const sharedMode = !isServerMode;
   let holidays = {};
 
   function todayValue() {
@@ -147,6 +149,12 @@
   }
 
   async function loadState() {
+    if (sharedMode) {
+      const response = await fetch(`https://api.restful-api.dev/objects/${sharedRecordId}`, { cache: "no-store" });
+      if (!response.ok) throw new Error("load failed");
+      const payload = await response.json();
+      return loadSavedState(payload.data);
+    }
     if (!isServerMode) return loadSavedState(JSON.parse(localStorage.getItem(storageKey) || "null"));
     const response = await fetch("/data");
     if (!response.ok) throw new Error("load failed");
@@ -155,6 +163,16 @@
 
   async function saveState(showMessage = false) {
     state.month = monthInput.value || todayValue();
+    if (sharedMode) {
+      const response = await fetch(`https://api.restful-api.dev/objects/${sharedRecordId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: "daily-check-in", data: state })
+      });
+      if (!response.ok) throw new Error("save failed");
+      if (showMessage) setMessage("已保存到共享记录");
+      return;
+    }
     if (!isServerMode) {
       localStorage.setItem(storageKey, JSON.stringify(state));
       if (showMessage) setMessage("已保存到本设备");
