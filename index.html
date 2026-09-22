@@ -68,9 +68,10 @@
     .summary { font-size: 13px; color: var(--muted); }
     .status { min-height: 15px; margin-top: 4px; font-size: 11px; color: var(--accent-dark); }
     .status.error { color: #b4232a; }
-    .month-row { display: grid; grid-template-columns: 38px 1fr 38px; gap: 5px; align-items: end; }
-    .month-row button { min-height: 36px; padding: 0; font-size: 17px; line-height: 1; }
-    .settings-grid { display: grid; grid-template-columns: minmax(0, 1fr) 120px; gap: 8px; align-items: end; }
+    .month-row { display: grid; grid-template-columns: 34px minmax(0, 1fr) 34px; gap: 3px; align-items: center; }
+    .month-row button { min-height: 36px; padding: 0; font-size: 16px; line-height: 1; border-radius: 12px; }
+    #month { width: 100%; padding-right: 4px; }
+    .settings-grid { display: grid; grid-template-columns: minmax(0, 1fr) 110px; gap: 6px; align-items: end; }
     .summary-list { display: grid; gap: 5px; max-height: 205px; overflow-y: auto; scrollbar-width: none; }
     .summary-list::-webkit-scrollbar { display: none; }
     .summary-card { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 11px; background: var(--surface-muted); font-size: 12px; }
@@ -80,12 +81,15 @@
     .summary-card .pill.rest { background: var(--rest-soft); color: #a55f43; }
     .summary-card .pill.work { background: var(--accent-soft); color: var(--accent-dark); }
     .summary-card .pill.salary { background: var(--secondary-soft); color: var(--secondary-dark); }
-    .pagination { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 7px; font-size: 11px; color: var(--muted); }
-    .pagination .pages { display: flex; justify-content: center; align-items: center; gap: 4px; flex-wrap: wrap; }
+    .pagination { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 7px; font-size: 11px; color: var(--muted); white-space: nowrap; overflow-x: auto; scrollbar-width: none; }
+    .pagination::-webkit-scrollbar { display: none; }
+    .page-settings { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .pagination .pages { display: inline-flex; justify-content: flex-end; align-items: center; gap: 4px; flex-wrap: nowrap; white-space: nowrap; }
     .pagination button { min-height: 28px; padding: 4px 9px; font-size: 11px; border-radius: 14px; }
     .pagination button.active { background: var(--secondary-soft); border-color: var(--secondary); color: var(--secondary-dark); font-weight: 750; }
     .pagination button:disabled { opacity: .42; pointer-events: none; }
-    .page-size-group { display: inline-flex; gap: 3px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-muted); }
+    .page-size-group { display: none; gap: 3px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-muted); }
+    .page-size-group.open { display: inline-flex; }
     .page-size-group button { min-height: 24px; padding: 3px 8px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font-size: 10px; font-weight: 700; }
     .page-size-group button.active { background: var(--secondary); color: #fff; }
   </style>
@@ -339,12 +343,14 @@
   function renderPagination(totalCount, totalPages) {
     const pagination = document.querySelector("#summary-pagination");
     pagination.replaceChildren();
+    const pageSizeOpen = !!pagination.dataset.sizeOpen;
     const info = document.createElement("div");
     info.className = "page-settings";
     const sizeLabel = document.createElement("span");
     sizeLabel.textContent = "每页";
     const sizeGroup = document.createElement("div");
     sizeGroup.className = "page-size-group";
+    if (pageSizeOpen) sizeGroup.classList.add("open");
     for (const size of [5, 10, 15, 20]) {
       const sizeButton = document.createElement("button");
       sizeButton.textContent = size;
@@ -354,11 +360,18 @@
         summaryPage = 1;
         renderAllSummary();
       });
-      sizeGroup.append(sizeButton);
+    sizeGroup.append(sizeButton);
     }
     const total = document.createElement("span");
     total.textContent = `共 ${totalCount} 条`;
-    info.append(sizeLabel, sizeGroup, total);
+    const settingsButton = document.createElement("button");
+    settingsButton.textContent = "设置";
+    settingsButton.addEventListener("click", () => {
+      pagination.dataset.sizeOpen = pagination.dataset.sizeOpen ? "" : "1";
+      if (pagination.dataset.sizeOpen) sizeGroup.classList.add("open");
+      else sizeGroup.classList.remove("open");
+    });
+    info.append(settingsButton, sizeGroup, total);
     const pages = document.createElement("div");
     pages.className = "pages";
     const previous = document.createElement("button");
