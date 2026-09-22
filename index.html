@@ -27,29 +27,29 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif;
     }
     * { box-sizing: border-box; }
-    body { margin: 0 auto; max-width: 680px; min-height: 100dvh; padding: 20px 16px 32px; background: linear-gradient(180deg, var(--background) 0%, #f9f1e9 100%); color: var(--text); }
-    main { display: grid; gap: 18px; }
-    section { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
-    .hero { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 20px; }
-    .hero h1 { font: 700 23px/1.2 var(--serif); letter-spacing: .04em; margin: 0; color: var(--secondary-dark); }
-    .hero p { margin: 5px 0 0; font-size: 12px; color: var(--muted); letter-spacing: .12em; }
-    .hero-mark { width: 46px; height: 46px; display: grid; place-items: center; border: 2px solid var(--secondary); border-radius: 50%; background: var(--surface); color: var(--accent-dark); font: 800 18px/1 var(--serif); box-shadow: var(--shadow); }
-    h2 { font: 700 17px/1.3 var(--serif); display: flex; align-items: center; gap: 10px; margin: 0 0 12px; color: var(--secondary-dark); }
+    body { margin: 0 auto; max-width: 680px; min-height: 100dvh; padding: 12px 12px 18px; background: linear-gradient(180deg, var(--background) 0%, #f9f1e9 100%); color: var(--text); }
+    main { display: grid; gap: 10px; }
+    section { padding: 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+    .hero { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+    .hero h1 { font: 700 19px/1.1 var(--serif); letter-spacing: .04em; margin: 0; color: var(--secondary-dark); }
+    .hero p { margin: 2px 0 0; font-size: 10px; color: var(--muted); letter-spacing: .12em; }
+    .hero-mark { width: 34px; height: 34px; display: grid; place-items: center; border: 2px solid var(--secondary); border-radius: 50%; background: var(--surface); color: var(--accent-dark); font: 800 14px/1 var(--serif); box-shadow: var(--shadow); }
+    h2 { font: 700 15px/1.2 var(--serif); display: flex; align-items: center; gap: 8px; margin: 0 0 8px; color: var(--secondary-dark); }
     h2::before { content: ""; width: 4px; height: 18px; border-radius: 2px; background: linear-gradient(180deg, var(--accent), var(--secondary)); }
-    label { display: block; margin: 0 0 6px; font-size: 12px; font-weight: 550; color: var(--muted); }
-    input, select { width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); font-size: 16px; }
+    label { display: block; margin: 0 4px 3px; font-size: 11px; font-weight: 550; color: var(--muted); }
+    input, select { width: 100%; min-height: 36px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); font-size: 15px; }
     input:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    button { min-height: 44px; padding: 10px 16px; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); color: var(--muted); font-size: 14px; font-weight: 600; transition: transform .15s ease, box-shadow .15s ease, color .15s ease, border-color .15s ease; }
+    button { min-height: 34px; padding: 6px 11px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); color: var(--muted); font-size: 12px; font-weight: 600; transition: transform .15s ease, box-shadow .15s ease, color .15s ease, border-color .15s ease; }
     button:hover { border-color: var(--accent); color: var(--accent-dark); }
     button:active { transform: scale(.98); }
     .secondary { color: var(--accent-dark); }
     .danger { color: var(--rest); }
     .danger:hover { border-color: var(--rest); background: var(--rest-soft); color: #a55f43; }
-    .calendar-head, .days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 7px; }
-    .calendar-head { margin: 12px 0 7px; }
-    .calendar-head div { text-align: center; font-size: 12px; font-weight: 700; color: var(--muted); }
+    .calendar-head, .days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+    .calendar-head { margin: 8px 0 4px; }
+    .calendar-head div { text-align: center; font-size: 11px; font-weight: 700; color: var(--muted); }
     .calendar-head div.weekend { color: var(--secondary-dark); }
-    .day { min-height: 66px; padding: 7px 4px; border: 1px solid transparent; border-radius: 12px; background: var(--surface-muted); text-align: center; font-size: 11px; line-height: 1.2; user-select: none; transition: transform .12s ease, box-shadow .12s ease, background .12s ease; }
+    .day { min-height: 46px; padding: 4px 2px; border: 1px solid transparent; border-radius: 9px; background: var(--surface-muted); text-align: center; font-size: 9px; line-height: 1.15; user-select: none; transition: transform .12s ease, box-shadow .12s ease, background .12s ease; }
     .day:hover { filter: brightness(.98); }
     .day:active { transform: scale(.96); }
     .day.weekend { background: #fdeef1; }
@@ -58,60 +58,78 @@
     .day.makeup { background: #fdf5df; border-color: #f3e2b8; }
     .day.rest.holiday { background: #d6f0cf; }
     .day.rest.makeup { background: #fbe6c8; }
-    .day .date { font: 700 16px/1 var(--serif); }
+    .day .date { font: 700 14px/1.15 var(--serif); }
     .day .holiday-name { overflow: hidden; max-width: 100%; font-size: 9px; color: #78806b; text-overflow: ellipsis; white-space: nowrap; }
-    .day .mode { margin-top: 4px; padding: 2px 7px; display: inline-block; border-radius: 999px; font-size: 10px; font-weight: 750; }
+    .day .mode { margin-top: 2px; padding: 1px 5px; display: inline-block; border-radius: 999px; font-size: 9px; font-weight: 750; }
     .day .mode.work { background: var(--accent-soft); color: var(--accent-dark); }
     .day .mode.rest { background: #fbd9dd; color: #9c4f5d; }
-    .row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-    .row button { flex: 1 1 120px; margin-top: 0; }
-    #clear { width: 100%; margin-top: 8px; }
+    .row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .row button { flex: 1 1 100px; margin-top: 0; }
     .summary { font-size: 13px; color: var(--muted); }
-    .status { min-height: 18px; margin-top: 10px; font-size: 13px; color: var(--accent-dark); }
+    .status { min-height: 15px; margin-top: 4px; font-size: 11px; color: var(--accent-dark); }
     .status.error { color: #b4232a; }
-    .summary-list { display: grid; gap: 9px; }
-    .summary-card { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 13px; border: 1px solid var(--line); border-radius: 13px; background: var(--surface-muted); font-size: 13px; }
-    .summary-card .month { font: 700 14px/1 var(--serif); color: #5b544c; }
-    .summary-card .numbers { display: flex; gap: 7px; }
-    .summary-card .pill { min-width: 62px; padding: 4px 9px; border-radius: 999px; text-align: center; font-size: 12px; font-weight: 750; }
+    .month-row { display: grid; grid-template-columns: 38px 1fr 38px; gap: 5px; align-items: end; }
+    .month-row button { min-height: 36px; padding: 0; font-size: 17px; line-height: 1; }
+    .settings-grid { display: grid; grid-template-columns: minmax(0, 1fr) 120px; gap: 8px; align-items: end; }
+    .summary-list { display: grid; gap: 5px; max-height: 205px; overflow-y: auto; scrollbar-width: none; }
+    .summary-list::-webkit-scrollbar { display: none; }
+    .summary-card { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 11px; background: var(--surface-muted); font-size: 12px; }
+    .summary-card .month { font: 700 13px/1 var(--serif); color: #5b544c; }
+    .summary-card .numbers { display: flex; gap: 4px; }
+    .summary-card .pill { min-width: 52px; padding: 2px 7px; border-radius: 999px; text-align: center; font-size: 10px; font-weight: 750; }
     .summary-card .pill.rest { background: var(--rest-soft); color: #a55f43; }
     .summary-card .pill.work { background: var(--accent-soft); color: var(--accent-dark); }
+    .summary-card .pill.salary { background: var(--secondary-soft); color: var(--secondary-dark); }
+    .pagination { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 7px; font-size: 11px; color: var(--muted); }
+    .pagination .pages { display: flex; align-items: center; gap: 4px; }
+    .pagination button { min-height: 28px; padding: 4px 9px; font-size: 11px; border-radius: 14px; }
+    .pagination button.active { background: var(--secondary-soft); border-color: var(--secondary); color: var(--secondary-dark); font-weight: 750; }
+    .pagination button:disabled { opacity: .42; pointer-events: none; }
+    .page-size-group { display: inline-flex; gap: 3px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-muted); }
+    .page-size-group button { min-height: 24px; padding: 3px 8px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font-size: 10px; font-weight: 700; }
+    .page-size-group button.active { background: var(--secondary); color: #fff; }
   </style>
 </head>
 <body>
 <main>
   <section>
     <div class="hero">
-      <div>
-        <h1>打卡小助手</h1>
-        <p>DAILY CHECK-IN</p>
-      </div>
+      <div><h1>打卡小助手</h1><p>DAILY CHECK-IN</p></div>
       <div class="hero-mark">记</div>
     </div>
-    <label for="month">月份</label>
-    <input id="month" type="month">
+    <div class="settings-grid">
+      <div>
+        <label for="month">月份</label>
+        <div class="month-row">
+          <button id="prev-month" type="button" class="secondary" aria-label="上一月">‹</button>
+          <input id="month" type="month">
+          <button id="next-month" type="button" class="secondary" aria-label="下一月">›</button>
+        </div>
+      </div>
+      <div>
+        <label for="rate">每日单价</label>
+        <input id="rate" type="number" min="0" step="0.01" inputmode="decimal" placeholder="300">
+      </div>
+    </div>
     <div id="message" class="status" aria-live="polite"></div>
   </section>
 
   <section>
     <h2>当月记录</h2>
-    <div id="month-summary" class="summary"></div>
     <div class="calendar-head">
       <div>周一</div><div>周二</div><div>周三</div><div>周四</div><div>周五</div><div class="weekend">周六</div><div class="weekend">周日</div>
     </div>
     <div id="days" class="days"></div>
     <div class="row">
       <button id="invert" type="button" class="secondary">反选休息日</button>
-      <button id="export" type="button" class="secondary">导出备份</button>
-      <button id="import" type="button" class="secondary">导入备份</button>
+      <button id="clear" type="button" class="danger">清空当月记录</button>
     </div>
-    <input id="file" type="file" accept="application/json" hidden>
-    <button id="clear" type="button" class="danger">清空当月记录</button>
   </section>
 
   <section>
     <h2>全部汇总</h2>
     <div id="all-summary" class="summary-list"></div>
+    <div id="summary-pagination" class="pagination"></div>
   </section>
 
 </main>
@@ -121,8 +139,8 @@
   const monthInput = document.querySelector("#month");
   const daysBox = document.querySelector("#days");
   const messageBox = document.querySelector("#message");
-  const monthSummary = document.querySelector("#month-summary");
   const allSummary = document.querySelector("#all-summary");
+  const rateInput = document.querySelector("#rate");
   const fileInput = document.querySelector("#file");
   const state = defaultState();
   const isServerMode = location.protocol === "http:";
@@ -130,13 +148,15 @@
   const sharedRecordId = "ff808181a09d98f701a0c72aefa167b9";
   const sharedMode = !isServerMode;
   let holidays = {};
+  let summaryPage = 1;
+  let summaryPageSize = 5;
 
   function todayValue() {
     return new Date().toISOString().slice(0, 7);
   }
 
   function defaultState() {
-    return { month: todayValue(), restDays: {} };
+    return { month: todayValue(), rate: 300, rates: {}, restDays: {} };
   }
 
   function loadSavedState(saved) {
@@ -145,7 +165,11 @@
     for (const [key, value] of Object.entries(saved.days || saved.restDays || {})) {
       if (value === true || value === "rest") restDays[key] = true;
     }
-    return { month: saved.month || todayValue(), restDays };
+    const rate = Number(saved.rate);
+    const rates = { ...(saved.rates || {}) };
+    if (Number.isFinite(rate) && rate >= 0 && rates[saved.month] === undefined) rates[saved.month] = rate;
+    const month = todayValue();
+    return { month, rate: Number.isFinite(rates[month]) ? rates[month] : 300, rates, restDays };
   }
 
   async function loadState() {
@@ -163,6 +187,8 @@
 
   async function saveState(showMessage = false) {
     state.month = monthInput.value || todayValue();
+    state.rate = Number(rateInput.value) || 0;
+    state.rates = { ...(state.rates || {}), [state.month]: state.rate };
     if (sharedMode) {
       const response = await fetch(`https://api.restful-api.dev/objects/${sharedRecordId}`, {
         method: "PUT",
@@ -191,6 +217,28 @@
   function monthDays(yearMonth) {
     const [year, month] = yearMonth.split("-").map(Number);
     return new Date(year, month, 0).getDate();
+  }
+
+  function getRate(yearMonth) {
+    const rate = Number(state.rates?.[yearMonth]);
+    return Number.isFinite(rate) ? rate : 300;
+  }
+
+  function shiftMonth(delta) {
+    const [year, month] = monthInput.value.split("-").map(Number);
+    const target = new Date(year, month - 1 + delta, 1);
+    monthInput.value = `${target.getFullYear()}-${String(target.getMonth() + 1).padStart(2, "0")}`;
+    applyMonth();
+  }
+
+  function applyMonth() {
+    state.month = monthInput.value;
+    rateInput.value = getRate(state.month);
+    saveState().catch(() => setMessage("保存失败", true));
+    loadHolidays(state.month.slice(0, 4)).then((data) => {
+      holidays = data || {};
+      render();
+    });
   }
 
   async function loadHolidays(year) {
@@ -243,12 +291,14 @@
       daysBox.append(day);
     }
 
-    monthSummary.textContent = `${yearMonth}：休息 ${restCount} 天，工作 ${count - restCount} 天`;
     renderAllSummary();
   }
 
   function renderAllSummary() {
     const months = [...new Set(Object.keys(state.restDays).map((key) => key.slice(0, 7)))].sort();
+    const totalPages = Math.max(1, Math.ceil(months.length / summaryPageSize));
+    summaryPage = Math.min(summaryPage, totalPages);
+    const visibleMonths = months.slice((summaryPage - 1) * summaryPageSize, summaryPage * summaryPageSize);
     allSummary.replaceChildren();
     if (months.length === 0) {
       const empty = document.createElement("div");
@@ -256,16 +306,13 @@
       const monthText = document.createElement("span");
       monthText.className = "month";
       monthText.textContent = "暂无记录";
-      const workPill = document.createElement("span");
-      workPill.className = "pill work";
-      workPill.textContent = "工作 0天";
-      empty.append(monthText, workPill);
+      empty.append(monthText);
       allSummary.append(empty);
-      return;
     }
-    for (const month of months) {
+    for (const month of visibleMonths) {
       const restCount = Object.keys(state.restDays).filter((key) => key.startsWith(`${month}-`)).length;
       const workCount = monthDays(month) - restCount;
+      const salary = (workCount * getRate(month)).toFixed(2);
       const card = document.createElement("div");
       card.className = "summary-card";
       const monthText = document.createElement("span");
@@ -279,10 +326,60 @@
       const workPill = document.createElement("span");
       workPill.className = "pill work";
       workPill.textContent = `工作 ${workCount}天`;
-      numbers.append(restPill, workPill);
+      const salaryPill = document.createElement("span");
+      salaryPill.className = "pill salary";
+      salaryPill.textContent = `¥${salary}`;
+      numbers.append(restPill, workPill, salaryPill);
       card.append(monthText, numbers);
       allSummary.append(card);
     }
+    renderPagination(months.length, totalPages);
+  }
+
+  function renderPagination(totalCount, totalPages) {
+    const pagination = document.querySelector("#summary-pagination");
+    pagination.replaceChildren();
+    const info = document.createElement("div");
+    info.className = "page-settings";
+    const sizeLabel = document.createElement("span");
+    sizeLabel.textContent = "每页";
+    const sizeGroup = document.createElement("div");
+    sizeGroup.className = "page-size-group";
+    for (const size of [5, 10, 15, 20, 50, 100]) {
+      const sizeButton = document.createElement("button");
+      sizeButton.textContent = size;
+      sizeButton.className = size === summaryPageSize ? "active" : "";
+      sizeButton.addEventListener("click", () => {
+        summaryPageSize = size;
+        summaryPage = 1;
+        renderAllSummary();
+      });
+      sizeGroup.append(sizeButton);
+    }
+    const total = document.createElement("span");
+    total.textContent = `共 ${totalCount} 条`;
+    info.append(sizeLabel, sizeGroup, total);
+    const pages = document.createElement("div");
+    pages.className = "pages";
+    const previous = document.createElement("button");
+    previous.textContent = "上一页";
+    previous.disabled = summaryPage === 1;
+    previous.addEventListener("click", () => { summaryPage -= 1; renderAllSummary(); });
+    pages.append(previous);
+    const pageNumbers = [...new Set([1, summaryPage - 1, summaryPage, summaryPage + 1, totalPages].filter((page) => page >= 1 && page <= totalPages))].sort((a, b) => a - b);
+    for (const pageNumber of pageNumbers) {
+      const pageButton = document.createElement("button");
+      pageButton.textContent = pageNumber;
+      pageButton.className = pageNumber === summaryPage ? "active" : "";
+      pageButton.addEventListener("click", () => { summaryPage = pageNumber; renderAllSummary(); });
+      pages.append(pageButton);
+    }
+    const next = document.createElement("button");
+    next.textContent = "下一页";
+    next.disabled = summaryPage === totalPages;
+    next.addEventListener("click", () => { summaryPage += 1; renderAllSummary(); });
+    pages.append(next);
+    pagination.append(info, pages);
   }
 
   function exportData() {
@@ -328,9 +425,6 @@
     }
     saveState().then(render).catch(() => setMessage("保存失败", true));
   });
-  document.querySelector("#export").addEventListener("click", exportData);
-  document.querySelector("#import").addEventListener("click", () => fileInput.click());
-  fileInput.addEventListener("change", importData);
   document.querySelector("#clear").addEventListener("click", () => {
     if (!confirm(`清空 ${monthInput.value} 的打卡记录？`)) return;
     for (const key of Object.keys(state.restDays)) {
@@ -339,14 +433,21 @@
     saveState();
     render();
   });
-  monthInput.addEventListener("change", () => { state.month = monthInput.value; saveState(); render(); });
+  document.querySelector("#prev-month").addEventListener("click", () => shiftMonth(-1));
+  document.querySelector("#next-month").addEventListener("click", () => shiftMonth(1));
+  monthInput.addEventListener("change", applyMonth);
+  rateInput.addEventListener("change", () => saveState().then(render).catch(() => setMessage("保存失败", true)));
 
   loadState().then((loaded) => {
     Object.assign(state, loaded);
-    monthInput.value = state.month || todayValue();
+    state.month = todayValue();
+    monthInput.value = state.month;
+    rateInput.value = getRate(state.month);
     render();
   }).catch(() => {
+    state.month = todayValue();
     monthInput.value = todayValue();
+    rateInput.value = getRate(state.month);
     render();
     setMessage("无法读取历史数据", true);
   }).finally(() => {
