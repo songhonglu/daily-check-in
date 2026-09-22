@@ -176,10 +176,14 @@
   }
 
   async function loadHolidays(year) {
-    const response = await fetch(`https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/${year}.json`);
-    if (!response.ok) return {};
-    const payload = await response.json();
-    return Object.fromEntries(payload.days.map((item) => [item.date, { isOffDay: item.isOffDay, name: item.name }]));
+    try {
+      const response = await fetch(`https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/${year}.json`, { cache: "force-cache" });
+      if (!response.ok) return {};
+      const payload = await response.json();
+      return Object.fromEntries(payload.days.map((item) => [item.date, { isOffDay: item.isOffDay, name: item.name }]));
+    } catch {
+      return {};
+    }
   }
 
   function render() {
@@ -319,15 +323,20 @@
   });
   monthInput.addEventListener("change", () => { state.month = monthInput.value; saveState(); render(); });
 
-  monthInput.addEventListener("change", () => loadHolidays(monthInput.value.slice(0, 4)).then((data) => { holidays = data; render(); }));
   loadState().then((loaded) => {
     Object.assign(state, loaded);
     monthInput.value = state.month || todayValue();
-    return loadHolidays(monthInput.value.slice(0, 4));
-  }).then((data) => {
-    holidays = data || {};
     render();
-  }).catch(() => setMessage("无法读取服务器数据", true));
+  }).catch(() => {
+    monthInput.value = todayValue();
+    render();
+    setMessage("无法读取历史数据", true);
+  }).finally(() => {
+    loadHolidays(monthInput.value.slice(0, 4)).then((data) => {
+      holidays = data || {};
+      render();
+    });
+  });
 })();
 </script>
 </body>
